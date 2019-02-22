@@ -123,6 +123,7 @@ class SignUpScreen extends React.PureComponent {
                     onChangeText={(email) => this.onEmailChange(email)}
                     value={this.state.email}
                     placeholder={PLACE_HOLDERS.email}
+                    autoCapitalize={'none'}
                 />
                 <StyledTextInput
                     onChangeText={(password) => this.onPasswordChange(password)}
