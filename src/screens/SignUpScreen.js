@@ -7,18 +7,11 @@ import { FullScreenView, ButtonView } from '../components/StyledViews'
 import { StyledTitleText, StyledButtonText } from '../components/StyledText'
 import { StyledTextInput } from '../components/StyledTextInput'
 import { signUpOperation } from '../redux/auth/actions'
-
-const PLACE_HOLDERS = {
-    userName: 'Username',
-    email: 'Email',
-    password: 'Password'
-}
-
-const SIGN_UP = 'Sign up'
+import { PLACE_HOLDERS, SIGN_UP } from '../helpers/constants'
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signUp: (username, email, password) => dispatch(signUpOperation(username, email, password))
+        signUp: (userName, email, password) => dispatch(signUpOperation(userName, email, password))
     }
 }
 
@@ -107,11 +100,11 @@ class SignUpScreen extends React.PureComponent {
     }
 
     signUpOperation = () => {
-        const { validForm, username, email, password } = this.state
+        const { validForm, userName, email, password } = this.state
         const { signUp } = this.props
         if (!validForm) { return }
 
-        signUp(username, email, password)
+        signUp(userName, email, password)
     }
 
     render() {
