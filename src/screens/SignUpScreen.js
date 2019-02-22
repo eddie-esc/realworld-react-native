@@ -7,7 +7,7 @@ import { FullScreenView, ButtonView } from '../components/StyledViews'
 import { StyledTitleText, StyledButtonText } from '../components/StyledText'
 import { StyledTextInput } from '../components/StyledTextInput'
 import { signUpOperation } from '../redux/auth/actions'
-import { PLACE_HOLDERS, SIGN_UP } from '../helpers/constants'
+import { PLACE_HOLDERS, SIGN_UP, COLORS } from '../helpers/constants'
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -131,7 +131,7 @@ class SignUpScreen extends React.PureComponent {
                     secureTextEntry
                 />
                 <TouchableOpacity onPress={() => this.signUpOperation()}>
-                    <ButtonView themeColor={validForm ? 'green' : 'silver'} wide><StyledButtonText>{SIGN_UP}</StyledButtonText></ButtonView>
+                    <ButtonView themeColor={validForm ? COLORS.green : COLORS.silver} wide><StyledButtonText>{SIGN_UP}</StyledButtonText></ButtonView>
                 </TouchableOpacity>
             </FullScreenView>
         )

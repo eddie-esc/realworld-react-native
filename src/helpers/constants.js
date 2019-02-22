@@ -7,3 +7,8 @@ export const PLACE_HOLDERS = {
 
 export const SIGN_UP = 'Sign up'
 export const LOGIN = 'Login'
+
+export const COLORS = {
+    green: 'green',
+    silver: 'silver'
+}
