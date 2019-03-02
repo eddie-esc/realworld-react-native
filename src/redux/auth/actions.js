@@ -2,6 +2,8 @@
 import conduitService from '../../services/conduitService'
 import r from '../../services/routes'
 import t from './actionTypes'
+import NavigationService from '../../helpers/navigationService'
+import { SCREENS} from "../../helpers/constants";
 
 export function setLoggedInState(loggedInState) {
     return {
@@ -37,7 +39,8 @@ export function loginOperation(email, password) {
         return conduitService.post(r.LOGIN, {user: {email: email, password: password}})
             .then(res => {
                 const userPayload = (res.data && res.data.user) ? res.data.user : null
-                return dispatch(setUserData(userPayload))
+                dispatch(setUserData(userPayload))
+                NavigationService.navigate(SCREENS.Home);
             }).catch(error => {
                 return dispatch(setLoggedInState(false))
             })

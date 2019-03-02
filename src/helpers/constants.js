@@ -1,4 +1,13 @@
 
+export const SCREENS = {
+    Home: 'Home',
+    ArticleDetails: 'ArticleDetails',
+    NewArticle: 'NewArticle',
+    Login: 'Login',
+    SignUp: 'SignUp',
+    Settings: 'Settings',
+}
+
 export const PLACE_HOLDERS = {
     userName: 'Username',
     email: 'Email',

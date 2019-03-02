@@ -17,6 +17,7 @@ import LoginScreen from './src/screens/LoginScreen'
 import SignUpScreen from './src/screens/SignUpScreen'
 import SettingsScreen from './src/screens/SettingsScreen'
 import AppReducer from './src/redux/store'
+import NavigationService from './src/helpers/navigationService';
 
 const persistentStoreBlacklist = []
 
@@ -78,7 +79,11 @@ export default class App extends React.Component {
         return (
             <Provider store={store}>
                 <PersistGate loading={null} persistor={persistor}>
-                    <AppContainer/>
+                    <AppContainer
+                        ref={navigatorRef => {
+                            NavigationService.setTopLevelNavigator(navigatorRef);
+                        }}
+                    />
                 </PersistGate>
             </Provider>
         )
