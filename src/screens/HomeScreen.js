@@ -1,7 +1,14 @@
 import React from 'react'
+import { connect } from 'react-redux'
 import { Button, View, Text } from 'react-native'
 
-export default class HomeScreen extends React.PureComponent {
+import { isLoggedIn } from '../redux/auth/selectors'
+
+const mapStateToProps = state => ({
+    isLoggedIn: isLoggedIn(state)
+})
+
+class HomeScreen extends React.PureComponent {
     render() {
         return (
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -30,3 +37,5 @@ export default class HomeScreen extends React.PureComponent {
         );
     }
 }
+
+export default connect (mapStateToProps, null)(HomeScreen)
