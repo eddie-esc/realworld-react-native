@@ -21,3 +21,8 @@ export const COLORS = {
     green: 'green',
     silver: 'silver'
 }
+
+export const NAV_BUTTONS = {
+    signupLogin: 'Sign Up / Login',
+    profile: 'Profile'
+}

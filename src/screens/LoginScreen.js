@@ -1,13 +1,15 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, Button } from 'react-native'
 import { func } from 'prop-types'
 
-import { PLACE_HOLDERS, LOGIN, COLORS } from '../helpers/constants'
+import { PLACE_HOLDERS, LOGIN, COLORS, SCREENS } from '../helpers/constants'
 import { FullScreenView, ButtonView } from '../components/StyledViews'
 import { StyledTitleText, StyledButtonText } from '../components/StyledText'
 import { StyledTextInput } from '../components/StyledTextInput'
 import { loginOperation } from '../redux/auth/actions'
+
+const SIGN_UP_CTA = 'Need an account?'
 
 const mapDispatchToProps = (dispatch) => {
     return {
@@ -90,10 +92,16 @@ class LoginScreen extends React.PureComponent {
 
     render() {
         const { validForm } = this.state
+        const { navigation } = this.props
 
         return (
             <FullScreenView paddingTopPercent={10}>
                 <StyledTitleText>{LOGIN}</StyledTitleText>
+                <Button
+                    title={SIGN_UP_CTA}
+                    onPress={() => navigation.replace(SCREENS.SignUp)}
+                    color={COLORS.green}
+                />
                 <StyledTextInput
                     onChangeText={(email) => this.onEmailChange(email)}
                     value={this.state.email}
