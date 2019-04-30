@@ -1,24 +1,20 @@
 import React from 'react'
 import { connect } from 'react-redux';
-import { TouchableOpacity } from 'react-native'
+import { TouchableOpacity, Button } from 'react-native'
 import { func } from 'prop-types'
 
 import { FullScreenView, ButtonView } from '../components/StyledViews'
 import { StyledTitleText, StyledButtonText } from '../components/StyledText'
 import { StyledTextInput } from '../components/StyledTextInput'
 import { signUpOperation } from '../redux/auth/actions'
+import { PLACE_HOLDERS, SIGN_UP, COLORS } from '../helpers/constants'
+import { SCREENS } from '../helpers/constants'
 
-const PLACE_HOLDERS = {
-    userName: 'Username',
-    email: 'Email',
-    password: 'Password'
-}
-
-const SIGN_UP = 'Sign up'
+const LOGIN_CTA = 'Have an account?'
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        signUp: (username, email, password) => dispatch(signUpOperation(username, email, password))
+        signUp: (userName, email, password) => dispatch(signUpOperation(userName, email, password))
     }
 }
 
@@ -107,19 +103,25 @@ class SignUpScreen extends React.PureComponent {
     }
 
     signUpOperation = () => {
-        const { validForm, username, email, password } = this.state
+        const { validForm, userName, email, password } = this.state
         const { signUp } = this.props
         if (!validForm) { return }
 
-        signUp(username, email, password)
+        signUp(userName, email, password)
     }
 
     render() {
         const { validForm } = this.state
+        const { navigation } = this.props
 
         return (
             <FullScreenView paddingTopPercent={10}>
                 <StyledTitleText>{SIGN_UP}</StyledTitleText>
+                <Button
+                    title={LOGIN_CTA}
+                    onPress={() => navigation.replace(SCREENS.Login)}
+                    color={COLORS.green}
+                />
                 <StyledTextInput
                     onChangeText={(userName) => this.onUserNameChange(userName)}
                     value={this.state.userName}
@@ -130,6 +132,7 @@ class SignUpScreen extends React.PureComponent {
                     onChangeText={(email) => this.onEmailChange(email)}
                     value={this.state.email}
                     placeholder={PLACE_HOLDERS.email}
+                    autoCapitalize={'none'}
                 />
                 <StyledTextInput
                     onChangeText={(password) => this.onPasswordChange(password)}
@@ -138,7 +141,7 @@ class SignUpScreen extends React.PureComponent {
                     secureTextEntry
                 />
                 <TouchableOpacity onPress={() => this.signUpOperation()}>
-                    <ButtonView themeColor={validForm ? 'green' : 'silver'} wide><StyledButtonText>{SIGN_UP}</StyledButtonText></ButtonView>
+                    <ButtonView themeColor={validForm ? COLORS.green : COLORS.silver} wide><StyledButtonText>{SIGN_UP}</StyledButtonText></ButtonView>
                 </TouchableOpacity>
             </FullScreenView>
         )
